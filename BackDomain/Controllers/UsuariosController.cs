@@ -23,8 +23,14 @@ namespace WepApi.Controllers
             return Ok(await _usuarioServices.GetAll());
         }
 
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            return Ok(await _usuarioServices.GetbyId(id));
+        }
+
         [HttpPost]
-        public async Task<IActionResult> Crear([FromBody] UsuarioResponse i)
+        public async Task<IActionResult> Create([FromBody] UsuarioResponse i)
         {
 
             return Ok(await _usuarioServices.Create(i));
@@ -32,9 +38,15 @@ namespace WepApi.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> Actualizar([FromBody] UsuarioResponse i, int id)
+        public async Task<IActionResult> Update([FromBody] UsuarioResponse i, int id)
         {
             return Ok(await _usuarioServices.Update(i, id));
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await _usuarioServices.Delete(id));
         }
 
     }
