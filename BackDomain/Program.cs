@@ -13,6 +13,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Integración de CorsPolicy
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", // This is the open house we talked about!
+        builder =>
+        {
+            builder.AllowAnyOrigin() // Any origin is welcome...
+                .AllowAnyHeader() // With any type of headers...
+                .AllowAnyMethod(); // And any HTTP methods. Such a jolly party indeed!
+        });
+});
+
+
+
 //Register services here
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
 builder.Configuration.GetConnectionString("DefaultConnection")
